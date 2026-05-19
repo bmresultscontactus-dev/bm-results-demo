@@ -1,0 +1,788 @@
+```html
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbershop DK Salon fryzur męskich - Bolesławiec</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B6914;
+            --secondary: #FDF6EC;
+            --dark: #2C1A0E;
+            --accent: #C9A84C;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', system-ui, sans-serif;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        /* NAVBAR */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+            padding: 16px 0;
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+        
+        .logo-circle {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .nav-links {
+            display: none;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background: var(--dark);
+            border-color: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 101;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+            .hamburger {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 80px 30px;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                align-items: flex-start;
+            }
+            
+            .nav-links.open {
+                right: 0;
+            }
+        }
+        
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--secondary) 0%, white 60%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 0 40px;
+        }
+        
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 32px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-large {
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-ghost:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .hero-decoration {
+            position: absolute;
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            opacity: 0.15;
+            z-index: 1;
+        }
+        
+        .hero-decoration::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+        
+        @media (min-width: 992px) {
+            .hero .container {
+                grid-template-columns: 60% 40%;
+            }
+            
+            .hero-decoration {
+                right: 5%;
+            }
+        }
+        
+        /* USLUGI */
+        .uslugi {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+        
+        .uslugi-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 50px;
+        }
+        
+        .usluga-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.08);
+            border-top: 3px solid var(--primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .usluga-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .usluga-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+        
+        .usluga-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        
+        .usluga-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        
+        .usluga-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.3s ease;
+        }
+        
+        .usluga-link:hover {
+            gap: 12px;
+        }
+        
+        @media (min-width: 768px) {
+            .uslugi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* O NAS */
+        .onas {
+            padding: 80px 0;
+            background: var(--secondary);
+        }
+        
+        .onas-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-top: 50px;
+            align-items: center;
+        }
+        
+        .onas-content h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 24px;
+        }
+        
+        .onas-content p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+        }
+        
+        .highlight-box {
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            background: white;
+            border-radius: 8px;
+            margin-top: 24px;
+        }
+        
+        .highlight-box strong {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .onas-image {
+            background: linear-gradient(135deg, rgba(139, 105, 20, 0.2), rgba(201, 168, 76, 0.2));
+            border-radius: 16px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        @media (min-width: 992px) {
+            .onas-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        /* OPINIE */
+        .opinie {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .opinie-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-top: 50px;
+        }
+        
+        .opinia-card {
+            background: var(--secondary);
+            border-radius: 16px;
+            padding: 28px;
+            position: relative;
+        }
+        
+        .opinia-card::before {
+            content: '"';
+            font-size: 5rem;
+            color: var(--primary);
+            opacity: 0.15;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+            font-family: Georgia, serif;
+        }
+        
+        .stars {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+        
+        .opinia-name {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .opinia-text {
+            color: #666;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (min-width: 768px) {
+            .opinie-container {
+                flex-direction: row;
+            }
+            
+            .opinia-card {
+                flex: 1;
+            }
+        }
+        
+        /* CTA BANNER */
+        .cta-banner {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-banner h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 16px;
+        }
+        
+        .cta-banner p {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin-bottom: 32px;
+        }
+        
+        .btn-white {
+            background: white;
+            color: var(--primary);
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* KONTAKT */
+        .kontakt {
+            padding: 80px 0;
+            background: var(--secondary);
+        }
+        
+        .kontakt-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .kontakt-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .info-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        
+        .info-icon {
+            font-size: 1.8rem;
+        }
+        
+        .info-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+            color: var(--dark);
+        }
+        
+        .info-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .map-placeholder {
+            background: linear-gradient(135deg, #e8e8e8, #d0d0d0);
+            border-radius: 12px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #666;
+            margin-top: 20px;
+        }
+        
+        .kontakt-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .kontakt-form input,
+        .kontakt-form textarea {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 14px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .kontakt-form input:focus,
+        .kontakt-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .kontakt-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .kontakt-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .kontakt-form button:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        @media (min-width: 992px) {
+            .kontakt-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-left h3 {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .footer-left p {
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+        
+        .footer-right {
+            opacity: 0.5;
+            font-size: 0.85rem;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-circle">B</div>
+                <span>Barbershop DK</span>
+            </div>
+            <div class="nav-links">
+                <a href="#uslugi">Usługi</a>
+                <a href="#onas">O nas</a>
+                <a href="#opinie">Opinie</a>
+                <a href="#kontakt">Kontakt</a>
+                <a href="tel:+48123456789" class="btn-primary">Zadzwoń teraz</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-decoration"></div>
+        <div class="container">
+            <div class="hero-content">
+                <span class="badge">Profesjonalny Barber Shop</span>
+                <h1>Męski styl<br>w sercu Bolesławca</h1>
+                <p class="hero-subtitle">Barbershop DK - Salon fryzur męskich z oceną 4.9/5 ⭐</p>
+                <div class="hero-buttons">
+                    <a href="#kontakt" class="btn-primary btn-large">Umów wizytę</a>
+                    <a href="#uslugi" class="btn-ghost btn-large">Nasze usługi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="uslugi" id="uslugi">
+        <div class="container">
+            <h2 class="section-title">Nasze usługi</h2>
+            <p class="section-subtitle">Profesjonalna pielęgnacja dla wymagających mężczyzn</p>
+            <div class="uslugi-grid">
+                <div class="usluga-card animate">
+                    <div class="usluga-icon">✂️</div>
+                    <h3>Strzyżenie męskie</h3>
+                    <p>Klasyczne i nowoczesne strzyżenia dopasowane do Twojego stylu i charakteru twarzy.</p>
+                    <a href="#kontakt" class="usluga-link">Umów się →</a>
+                </div>
+                <div class="usluga-card animate">
+                    <div class="usluga-icon">🪒</div>
+                    <h3>Golenie brzytwą</h3>
+                    <p>Tradycyjne golenie na gorąco z użyciem profesjonalnych produktów i technik.</p>
+                    <a href="#kontakt" class="usluga-link">Umów się →</a>
+                </div>
+                <div class="usluga-card animate">
+                    <div class="usluga-icon">💈</div>
+                    <h3>Stylizacja brody</h3>
+                    <p>Precyzyjne przycinanie, modelowanie i pielęgnacja zarostu oraz brody.</p>
+                    <a href="#kontakt" class="usluga-link">Umów się →</a>
+                </div>
+                <div class="usluga-card animate">
+                    <div class="usluga-icon">🎩</div>
+                    <h3>Strzyżenie Premium</h3>
+                    <p>Kompleksowa usługa obejmująca strzyżenie, golenie i stylizację brody.</p>
+                    <a href="#kontakt" class="usluga-link">Umów się →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="onas" id="onas">
+        <div class="container">
+            <div class="onas-grid">
+                <div class="onas-content">
+                    <h2>O Barbershop DK</h2>
+                    <p>Barbershop DK to nowoczesny salon fryzur męskich w centrum Bolesławca przy ulicy Mickiewicza 5/4. Specjalizujemy się w klasycznych i współczesnych strzyżeniach męskich, pielęgnacji brody oraz tradycyjnym goleniu brzytwą.</p>
+                    <p>Nasz zespół doświadczonych barberów dba o każdy detal, łącząc tradycyjne techniki z nowoczesnymi trendami. Tworzymy atmosferę, w której każdy mężczyzna może poczuć się wyjątkowo i zadbać o swój wygląd na najwyższym poziomie.</p>
+                    <p>Odwiedzając nas, możesz liczyć na profesjonalną obsługę, indywidualne podejście i gwarancję satysfakcji z efektu końcowego.</p>
+                    <div class="highlight-box">
+                        <strong>⭐ 4.9/5</strong><br>
+                        Średnia ocena na podstawie 142 opinii w Google
+                    </div>
+                </div>
+                <div class="onas-image">
+                    📸 Twoje zdjęcia tutaj
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="opinie" id="opinie">
+        <div class="container">
+            <h2 class="section-title">Co mówią nasi klienci</h2>
+            <p class="section-subtitle">Ponad 140 zadowolonych klientów</p>
+            <div class="opinie-container">
+                <div class="opinia-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="opinia-name">Marcin K.</div>
+                    <p class="opinia-text">Najlepszy barber w Bolesławcu! Profesjonalne podejście, świetna atmosfera i perfekcyjne strzyżenie. Zawsze wychodzę zadowolony.</p>
+                </div>
+                <div class="opinia-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="opinia-name">Tomasz W.</div>
+                    <p class="opinia-text">Rewelacyjna obsługa i precyzja wykonania. Golenie brzytwą na najwyższym poziomie. Polecam każdemu, kto szuka profesjonalnego barbera.</p>
+                </div>
+                <div class="opinia-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="opinia-name">Paweł S.</div>
+                    <p class="opinia-text">Świetne miejsce! Fachowa obsługa, dobra atmosfera i zawsze doskonały efekt. Od miesięcy jestem stałym klientem i nie zamierzam zmieniać.
