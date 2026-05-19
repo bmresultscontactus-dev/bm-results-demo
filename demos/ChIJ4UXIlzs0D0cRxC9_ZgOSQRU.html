@@ -1,0 +1,784 @@
+```html
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adwokat Arkadiusz Malak - Kancelaria Prawna Bolesławiec</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1A237E;
+            --secondary: #F5F5F5;
+            --dark: #0D1347;
+            --accent: #B8860B;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', system-ui, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        /* NAVBAR */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+            padding: 16px 0;
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+        
+        .logo-circle {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .btn-phone {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .btn-phone:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 35, 126, 0.3);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 101;
+        }
+        
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--dark);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.open {
+                display: flex;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+        }
+        
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--secondary) 0%, white 60%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 60px 0;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .hero-left {
+            z-index: 2;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #555;
+            margin-bottom: 32px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(26, 35, 126, 0.3);
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            color: var(--primary);
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-ghost:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .hero-right {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-circle-large {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            opacity: 0.15;
+            position: relative;
+        }
+        
+        .hero-circle-small {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            border-radius: 50%;
+            opacity: 0.2;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-right {
+                display: none;
+            }
+            
+            .hero {
+                min-height: auto;
+                padding: 80px 0;
+            }
+        }
+        
+        /* USLUGI */
+        .uslugi {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            margin: 16px auto 0;
+        }
+        
+        .uslugi-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+        
+        .usluga-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.08);
+            border-top: 3px solid var(--primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .usluga-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .usluga-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+        
+        .usluga-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        
+        .usluga-card p {
+            color: #666;
+            margin-bottom: 16px;
+        }
+        
+        .usluga-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .usluga-link:hover {
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .uslugi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* O NAS */
+        .onas {
+            padding: 80px 0;
+            background: var(--secondary);
+        }
+        
+        .onas-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 60px;
+        }
+        
+        .onas-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+        
+        .onas-text p {
+            margin-bottom: 16px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+        
+        .highlight-box {
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            background: white;
+            border-radius: 8px;
+            margin-top: 24px;
+        }
+        
+        .highlight-box strong {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        .onas-image {
+            background: linear-gradient(135deg, rgba(26, 35, 126, 0.2), rgba(184, 134, 11, 0.2));
+            border-radius: 16px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .onas-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* OPINIE */
+        .opinie {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .opinie-container {
+            display: flex;
+            gap: 24px;
+            margin-top: 60px;
+        }
+        
+        .opinia-card {
+            background: var(--secondary);
+            border-radius: 16px;
+            padding: 28px;
+            position: relative;
+            flex: 1;
+        }
+        
+        .opinia-card::before {
+            content: '"';
+            font-size: 5rem;
+            color: var(--primary);
+            opacity: 0.15;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: Georgia, serif;
+        }
+        
+        .stars {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+        }
+        
+        .opinia-author {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        
+        .opinia-text {
+            color: #555;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .opinie-container {
+                flex-direction: column;
+            }
+        }
+        
+        /* CTA BANNER */
+        .cta-banner {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-banner h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .cta-banner p {
+            font-size: 1.2rem;
+            opacity: 0.85;
+            margin-bottom: 32px;
+        }
+        
+        .btn-white {
+            background: white;
+            color: var(--primary);
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* KONTAKT */
+        .kontakt {
+            padding: 80px 0;
+            background: var(--secondary);
+        }
+        
+        .kontakt-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 60px;
+        }
+        
+        .info-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        
+        .info-icon {
+            font-size: 1.8rem;
+        }
+        
+        .info-content h4 {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--dark);
+        }
+        
+        .info-content p {
+            color: #666;
+        }
+        
+        .map-placeholder {
+            background: linear-gradient(135deg, #e8e8e8, #d0d0d0);
+            border-radius: 12px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 14px;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .btn-submit {
+            background: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(26, 35, 126, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .kontakt-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-left h3 {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .footer-left p {
+            opacity: 0.7;
+            font-size: 0.95rem;
+        }
+        
+        .footer-right {
+            opacity: 0.5;
+            font-size: 0.85rem;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-circle">A</div>
+                <span>Adwokat Arkadiusz Malak</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#uslugi">Usługi</a></li>
+                <li><a href="#onas">O nas</a></li>
+                <li><a href="#opinie">Opinie</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+                <li><a href="tel:+48000000000" class="btn-phone">📞 Zadzwoń</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-left animate">
+                    <div class="badge">Kancelaria Prawna</div>
+                    <h1>Profesjonalna pomoc prawna w Bolesławcu</h1>
+                    <p class="hero-subtitle">Adwokat Arkadiusz Malak - doświadczenie i skuteczność w obronie Twoich praw</p>
+                    <div class="hero-buttons">
+                        <a href="#kontakt" class="btn-primary">Umów konsultację</a>
+                        <a href="#uslugi" class="btn-ghost">Nasze usługi</a>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <div class="hero-circle-large">
+                        <div class="hero-circle-small"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- USLUGI -->
+    <section class="uslugi" id="uslugi">
+        <div class="container">
+            <h2 class="section-title">Nasze Usługi</h2>
+            <div class="uslugi-grid">
+                <div class="usluga-card animate">
+                    <div class="usluga-icon">👨‍👩‍👧</div>
+                    <h3>Sprawy Rodzinne</h3>
+                    <p>Rozwody, alimenty, kontakty z dziećmi - kompleksowa obsługa prawna w sprawach rodzinnych.</p>
+                    <a href="#kontakt" class="usluga-link">Dowiedz się więcej →</a>
+                </div>
+                <div class="usluga-card animate">
+                    <div class="usluga-icon">🏠</div>
+                    <h3>Sprawy Nieruchomości</h3>
+                    <p>Transakcje kupna-sprzedaży, dzierżawa, służebności - zabezpieczenie Twoich interesów.</p>
+                    <a href="#kontakt" class="usluga-link">Dowiedz się więcej →</a>
+                </div>
+                <div class="usluga-card animate">
+                    <div class="usluga-icon">⚖️</div>
+                    <h3>Sprawy Spadkowe</h3>
+                    <p>Stwierdzenie nabycia spadku, dział spadku, Testament - profesjonalne doradztwo.</p>
+                    <a href="#kontakt" class="usluga-link">Dowiedz się więcej →</a>
+                </div>
+                <div class="usluga-card animate">
+                    <div class="usluga-icon">🛡️</div>
+                    <h3>Sprawy Karne</h3>
+                    <p>Obrona w sprawach karnych, reprezentacja przed sądem - skuteczna ochrona Twoich praw.</p>
+                    <a href="#kontakt" class="usluga-link">Dowiedz się więcej →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- O NAS -->
+    <section class="onas" id="onas">
+        <div class="container">
+            <div class="onas-grid">
+                <div class="onas-text animate">
+                    <h2>O Kancelarii</h2>
+                    <p>Kancelaria Adwokata Arkadiusza Malaka to sprawdzona pomoc prawna w sercu Bolesławca. Specjalizujemy się w sprawach rodzinnych, nieruchomości, sprawach spadkowych oraz karnych.</p>
+                    <p>Naszą misją jest zapewnienie kompleksowej obsługi prawnej na najwyższym poziomie. Stawiamy na indywidualne podejście do każdego klienta i skuteczną obronę jego interesów.</p>
+                    <p>Z siedzibą przy ul. Daszyńskiego 13/7 w Bolesławcu, jesteśmy dostępni dla klientów z całego regionu dolnośląskiego.</p>
+                    <div class="highlight-box">
+                        <strong>⭐ 4.8/5</strong> - ocena na podstawie <strong>351 opinii Google</strong>
+                    </div>
+                </div>
+                <div class="onas-image animate">
+                    📸 Twoje zdjęcia tutaj
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPINIE -->
+    <section class="opinie" id="opinie">
+        <div class="container">
+            <h2 class="section-title">Opinie Klientów</h2>
+            <div class="opinie-container">
+                <div class="opinia-card animate">
+                    <div class="stars">★★★★★</div>
+                    <div class="opinia-author">Katarzyna M.</div>
+                    <p class="opinia-text">Profesjonalna obsługa w mojej sprawie rozwodowej. Pan adwokat wykazał się dużym zaangażowaniem i empatią. Gorąco polecam!</p>
+                </div>
+                <div class="opinia-card animate">
+                    <div class="stars">★★★★★</div>
+                    <div class="opinia-author">Piotr K.</div>
+                    <p class="opinia-text">Skuteczna pomoc w sprawie spadkowej. Wszystko zostało załatwione sprawnie i bez zbędnych komplikacji. Dziękuję za profesjonalizm.</p>
+                </div>
+                <div class="opinia-card animate">
+                    <div class="stars">★★★★★</div>
+                    <div class="opinia-author">Anna W.</div>
+                    <p class="opinia-text">Kompleksowa obsługa w sprawie zakupu nieruchomości. Pan adwokat doskonale zabezpieczył nasze interesy. Polecam z całego serca!</p>
+                </div>
+            </div
