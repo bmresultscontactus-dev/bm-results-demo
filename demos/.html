@@ -1,0 +1,815 @@
+```html
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pracownia Fryzjerska Agata Binkowska - Trzebnica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B6914;
+            --secondary: #FDF6EC;
+            --dark: #2C1A0E;
+            --accent: #C9A84C;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', system-ui, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        /* NAVBAR */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+            padding: 16px 0;
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+        
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .nav-links {
+            display: none;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--dark);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--secondary) 0%, white 60%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 0 40px;
+        }
+        
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .hero-text {
+            font-size: 1.05rem;
+            color: #666;
+            margin-bottom: 32px;
+            max-width: 540px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-ghost:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .hero-visual {
+            position: absolute;
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 400px;
+            height: 400px;
+            z-index: 1;
+        }
+        
+        .circle-large {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            opacity: 0.15;
+            position: absolute;
+        }
+        
+        .circle-small {
+            width: 280px;
+            height: 280px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            border-radius: 50%;
+            opacity: 0.12;
+            position: absolute;
+            top: 60px;
+            left: 60px;
+        }
+        
+        /* SERVICES */
+        .services {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 1.05rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.08);
+            border-top: 3px solid var(--primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        
+        .service-card p {
+            color: #666;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+        
+        .service-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.3s ease;
+        }
+        
+        .service-link:hover {
+            gap: 10px;
+        }
+        
+        /* ABOUT */
+        .about {
+            padding: 80px 0;
+            background: var(--secondary);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-top: 50px;
+        }
+        
+        .about-text h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--dark);
+        }
+        
+        .about-text p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        
+        .highlight-box {
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            background: white;
+            border-radius: 8px;
+            margin-top: 28px;
+        }
+        
+        .highlight-box strong {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .stars {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        
+        .about-image {
+            background: linear-gradient(135deg, rgba(139, 105, 20, 0.2), rgba(201, 168, 76, 0.2));
+            border-radius: 16px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        /* REVIEWS */
+        .reviews {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .reviews-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-top: 50px;
+        }
+        
+        .review-card {
+            background: var(--secondary);
+            border-radius: 16px;
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .review-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--primary);
+            opacity: 0.15;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .review-stars {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+        
+        .review-text {
+            color: #666;
+            margin-bottom: 16px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .review-author {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        /* CTA BANNER */
+        .cta-banner {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-banner h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .cta-banner p {
+            opacity: 0.85;
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+        
+        .btn-white {
+            background: white;
+            color: var(--primary);
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* CONTACT */
+        .contact {
+            padding: 80px 0;
+            background: var(--secondary);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .info-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        
+        .info-icon {
+            font-size: 1.8rem;
+        }
+        
+        .info-content h4 {
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--dark);
+        }
+        
+        .info-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .map-placeholder {
+            background: linear-gradient(135deg, #e8e8e8, #d0d0d0);
+            border-radius: 12px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: 600;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .contact-form {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding-bottom: 30px;
+        }
+        
+        .footer-left h3 {
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .footer-left p {
+            opacity: 0.7;
+            line-height: 1.7;
+        }
+        
+        .footer-right {
+            opacity: 0.5;
+            font-size: 0.85rem;
+            text-align: right;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            text-align: center;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+        
+        /* MEDIA QUERIES */
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+            
+            .hamburger {
+                display: none;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .reviews-container {
+                flex-direction: row;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .hero .container {
+                grid-template-columns: 60% 40%;
+            }
+            
+            .hero-visual {
+                position: relative;
+                right: 0;
+                top: 0;
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                align-items: stretch;
+            }
+            
+            .nav-links.open {
+                display: flex;
+            }
+            
+            .nav-links a {
+                padding: 12px 0;
+                border-bottom: 1px solid #f0f0f0;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-right {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-circle">P</div>
+                <span>Pracownia Fryzjerska</span>
+            </div>
+            <div class="nav-links">
+                <a href="#uslugi">Usługi</a>
+                <a href="#onas">O nas</a>
+                <a href="#opinie">Opinie</a>
+                <a href="#kontakt">Kontakt</a>
+                <a href="tel:+48000000000" class="btn-primary">Zadzwoń</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">💇 Fryzjerstwo</div>
+                <h1>Profesjonalna pielęgnacja Twoich włosów</h1>
+                <p class="hero-subtitle">Pracownia Fryzjerska Agata Binkowska • Trzebnica</p>
+                <p class="hero-text">Odkryj profesjonalne usługi fryzjerskie w sercu Trzebnicy. Pasja, doświadczenie i najwyższa jakość obsługi w jednym miejscu.</p>
+                <div class="hero-buttons">
+                    <a href="#kontakt" class="btn-primary">Umów wizytę</a>
+                    <a href="#uslugi" class="btn-ghost">Nasze usługi</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="circle-large"></div>
+                <div class="circle-small"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="uslugi">
+        <div class="container">
+            <h2 class="section-title">Nasze usługi</h2>
+            <p class="section-subtitle">Kompleksowa obsługa fryzjerska dla Ciebie</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">✂️</div>
+                    <h3>Strzyżenie damskie i męskie</h3>
+                    <p>Profesjonalne strzyżenie dopasowane do kształtu twarzy i stylu życia. Klasyczne cięcia oraz nowoczesne fryzury.</p>
+                    <a href="#kontakt" class="service-link">Dowiedz się więcej →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Koloryzacja i baleyage</h3>
+                    <p>Profesjonalna koloryzacja włosów, baleyage, refleksy i pasemka. Używamy wysokiej jakości produktów dbających o włosy.</p>
+                    <a href="#kontakt" class="service-link">Dowiedz się więcej →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💆</div>
+                    <h3>Pielęgnacja i regeneracja</h3>
+                    <p>Zabiegi odbudowujące, keratynowe prostowanie, ampułki regenerujące. Przywróć włosom zdrowy blask.</p>
+                    <a href="#kontakt" class="service-link">Dowiedz się więcej →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👰</div>
+                    <h3>Fryzury okolicznościowe</h3>
+                    <p>Ślubne upięcia, fryzury na wesela i uroczystości. Twój wyjątkowy dzień zasługuje na perfekcyjną fryzurę.</p>
+                    <a href="#kontakt" class="service-link">Dowiedz się więcej →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="onas">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>O pracowni</h2>
+                    <p>Pracownia Fryzjerska Agata Binkowska to miejsce, gdzie pasja do fryzjerstwa spotyka się z profesjonalizmem. Znajdziesz nas w Trzebnicy przy ulicy Bartosza Głowackiego 15a, w sercu miasta.</p>
+                    <p>Specjalizujemy się w kompleksowych usługach fryzjerskich dla kobiet i mężczyzn. Każdy klient jest dla nas wyjątkowy, dlatego podchodzimy indywidualnie do każdej wizyty, doradząc najlepsze rozwiązania.</p>
+                    <p>Stawiamy na wysoką jakość usług, profesjonalne produkty oraz ciągły rozwój naszych umiejętności. Twoje zadowolenie to nasz największy sukces.</p>
+                    <div class="highlight-box">
+                        <strong>⭐ Ocena Google: 4.9/5</strong>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span>(121 opinii)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    📸 Twoje zdjęcia tutaj
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews" id="opinie">
+        <div class="container">
+            <h2 class="section-title">Co mówią nasi klienci</h2>
+            <p class="section-subtitle">Opinie, które nas motywują</p>
+            <div class="reviews-container">
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">Najlepszy fryzjer w Trzebnicy! Pani Agata zawsze wie co zrobić z moimi włosami. Profesjonalne podejście, miła atmosfera i świetne efekty.</p>
+                    <div class="review-author">– Katarzyna M.</div>
+                </div>
+                <div class="review-card">
+                    <div
