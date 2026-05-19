@@ -1,0 +1,795 @@
+```html
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pracownia Florystyczna Ole Flore - Oleśnica | Kwiaciarnia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #C17B8C;
+            --secondary: #F8E8F0;
+            --dark: #4A2535;
+            --accent: #E8A0B0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', system-ui, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        /* NAVBAR */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+            padding: 16px 0;
+        }
+        
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+        
+        .logo-circle {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+        
+        .nav-links {
+            display: none;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--secondary) 0%, white 60%);
+            display: flex;
+            align-items: center;
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-text {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 32px;
+            font-weight: 500;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            color: var(--dark);
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-ghost:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .hero-decoration {
+            position: absolute;
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            opacity: 0.15;
+            z-index: 1;
+        }
+        
+        .hero-decoration::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            border-radius: 50%;
+        }
+        
+        /* SECTIONS */
+        section {
+            padding: 80px 0;
+        }
+        
+        h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 48px;
+            position: relative;
+            padding-bottom: 16px;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        /* USLUGI */
+        .uslugi {
+            background: white;
+        }
+        
+        .uslugi-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        
+        .usluga-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.08);
+            border-top: 3px solid var(--primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .usluga-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .usluga-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+        
+        .usluga-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        
+        .usluga-card p {
+            color: #666;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+        
+        .usluga-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .usluga-card a:hover {
+            color: var(--dark);
+        }
+        
+        /* O NAS */
+        .onas {
+            background: var(--secondary);
+        }
+        
+        .onas-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .onas-text h2 {
+            text-align: left;
+            margin-bottom: 24px;
+        }
+        
+        .onas-text h2::after {
+            left: 0;
+            transform: none;
+        }
+        
+        .onas-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        .highlight-box {
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            background: white;
+            border-radius: 8px;
+            margin-top: 24px;
+        }
+        
+        .highlight-box strong {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .onas-image {
+            background: linear-gradient(135deg, rgba(193, 123, 140, 0.2), rgba(232, 160, 176, 0.2));
+            border-radius: 16px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* OPINIE */
+        .opinie {
+            background: white;
+        }
+        
+        .opinie-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .opinia-card {
+            background: var(--secondary);
+            border-radius: 16px;
+            padding: 28px;
+            position: relative;
+        }
+        
+        .opinia-card::before {
+            content: '"';
+            font-size: 5rem;
+            color: var(--primary);
+            opacity: 0.15;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .stars {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+        
+        .opinia-card .name {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .opinia-card p {
+            color: #555;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* CTA BANNER */
+        .cta-banner {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-banner h2 {
+            color: white;
+            margin-bottom: 16px;
+        }
+        
+        .cta-banner h2::after {
+            background: white;
+        }
+        
+        .cta-subtitle {
+            opacity: 0.85;
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+        
+        .btn-white {
+            background: white;
+            color: var(--primary);
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* KONTAKT */
+        .kontakt {
+            background: var(--secondary);
+        }
+        
+        .kontakt-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        
+        .info-boxes {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .info-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        
+        .info-box-icon {
+            font-size: 1.8rem;
+        }
+        
+        .info-box-content h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--dark);
+        }
+        
+        .info-box-content p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .map-placeholder {
+            background: linear-gradient(135deg, #e8e8e8, #d0d0d0);
+            border-radius: 12px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: 600;
+            margin-top: 16px;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 14px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 32px;
+            padding-bottom: 32px;
+        }
+        
+        .footer-left h3 {
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .footer-left p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        .footer-right {
+            opacity: 0.5;
+            font-size: 0.85rem;
+            text-align: right;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 24px 0;
+            text-align: center;
+            opacity: 0.6;
+            font-size: 0.85rem;
+        }
+        
+        /* RESPONSIVE */
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+            
+            .hamburger {
+                display: none;
+            }
+            
+            .hero-content {
+                grid-template-columns: 60% 40%;
+            }
+            
+            .uslugi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .onas-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .opinie-container {
+                flex-direction: row;
+            }
+            
+            .kontakt-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                gap: 16px;
+            }
+            
+            .nav-links.open {
+                display: flex;
+            }
+            
+            .hero-decoration {
+                width: 250px;
+                height: 250px;
+                right: -50px;
+            }
+            
+            .hero-decoration::after {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .footer-right {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <div class="logo-circle">P</div>
+                <span>Ole Flore</span>
+            </div>
+            <div class="nav-links">
+                <a href="#uslugi">Usługi</a>
+                <a href="#onas">O nas</a>
+                <a href="#opinie">Opinie</a>
+                <a href="#kontakt">Kontakt</a>
+                <a href="tel:+48000000000" class="btn-primary">Zadzwoń</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="badge">🌸 Florystyka w Oleśnicy</span>
+                    <h1>Pracownia Florystyczna Ole Flore</h1>
+                    <p class="hero-subtitle">Twoje kwiaciarnia w sercu Oleśnicy</p>
+                    <div class="hero-buttons">
+                        <a href="#kontakt" class="btn-primary">Zamów bukiet</a>
+                        <a href="#uslugi" class="btn-ghost">Nasze usługi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-decoration"></div>
+    </section>
+
+    <section id="uslugi" class="uslugi">
+        <div class="container">
+            <h2>Nasze Usługi</h2>
+            <div class="uslugi-grid">
+                <div class="usluga-card animate">
+                    <span class="usluga-icon">💐</span>
+                    <h3>Bukiety okolicznościowe</h3>
+                    <p>Tworzymy wyjątkowe bukiety na każdą okazję - urodziny, rocznice, imieniny i wiele innych.</p>
+                    <a href="#kontakt">Zamów teraz →</a>
+                </div>
+                <div class="usluga-card animate">
+                    <span class="usluga-icon">💒</span>
+                    <h3>Florystyka ślubna</h3>
+                    <p>Kompleksowa oprawa florystyczna wesela - bukiet panny młodej, dekoracje sali i kościoła.</p>
+                    <a href="#kontakt">Dowiedz się więcej →</a>
+                </div>
+                <div class="usluga-card animate">
+                    <span class="usluga-icon">🌹</span>
+                    <h3>Wiązanki żałobne</h3>
+                    <p>Z szacunkiem przygotowujemy wiązanki i wieńce pogrzebowe w każdej formie.</p>
+                    <a href="#kontakt">Skontaktuj się →</a>
+                </div>
+                <div class="usluga-card animate">
+                    <span class="usluga-icon">🎁</span>
+                    <h3>Kompozycje kwiatowe</h3>
+                    <p>Oryginalne kompozycje w boxach, koszach i wazonach idealne jako prezent.</p>
+                    <a href="#kontakt">Zobacz więcej →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="onas" class="onas">
+        <div class="container">
+            <div class="onas-content">
+                <div class="onas-text">
+                    <h2>O Naszej Pracowni</h2>
+                    <p>Pracownia Florystyczna Ole Flore to miejsce, gdzie pasja do kwiatów spotyka się z profesjonalizmem. Znajdujemy się w samym sercu Oleśnicy przy Rynku 36, gdzie z dumą obsługujemy naszych klientów.</p>
+                    <p>Każdy bukiet to dla nas wyjątkowe wyzwanie artystyczne. Używamy wyłącznie świeżych kwiatów najwyższej jakości, a nasze kompozycje łączą tradycyjne techniki florystyczne z nowoczesnymi trendami.</p>
+                    <p>Nasz zespół to pasjonaci, którzy podchodzą do każdego zamówienia indywidualnie, dbając o najmniejsze detale. Zależy nam na tym, aby każdy bukiet opowiadał wyjątkową historię.</p>
+                    <div class="highlight-box">
+                        <strong>⭐ 4.9/5</strong><br>
+                        Ocena Google na podstawie 101 opinii naszych zadowolonych klientów
+                    </div>
+                </div>
+                <div class="onas-image">
+                    📸 Twoje zdjęcia tutaj
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="opinie" class="opinie">
+        <div class="container">
+            <h2>Co Mówią Nasi Klienci</h2>
+            <div class="opinie-container">
+                <div class="opinia-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="name">Anna Kowalska</div>
+                    <p>Przepiękny bukiet ślubny! Panie z Ole Flore doskonale zrozumiały moją wizję i stworzyły kompozycję przekraczającą moje najśmielsze oczekiwania. Polecam z całego serca!</p>
+                </div>
+                <div class="opinia-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="name">Tomasz Wiśniewski</div>
+                    <p>Zamawiałem bukiet na rocznicę ślubu. Kwiaty były świeże, pięknie ułożone, a obsługa bardzo profesjonalna. Żona była zachwycona, wracam tutaj regularnie!</p>
+                </div>
+                <div class="opinia-card">
+                    <div class="stars">★★★★★</div>
+                    <div class="name">Maria Nowak</div>
+                    <p>Najlepsza kwiaciarnia w Oleśnicy! Zawsze mogę liczyć na pomoc w doborze odpowiednich kwiatów. Ole Flore to miejsce, gdzie pasja spotyka się z profesjonalizmem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <div class="container">
+            <h2>Zamów Swój Bukiet Już Dziś</h2>
+            <p class="cta-subtitle">Zadzwoń lub odwiedź nas w naszej pracowni przy Rynku 36</p>
+            <a href="#kontakt" class="btn-white">Skontaktuj się z nami</a>
+        </div>
+    </section>
+
+    <section id="kontakt" class="kontakt">
+        <div class="container">
+            <h2>Kontakt</h2>
+            <div class="kontakt-grid">
+                <div>
+                    <div class="info-boxes">
+                        <div class="info-box">
+                            <div class="info-box-icon">📍</div>
+                            <div class="info-box-content">
+                                <h3>Adres</h3>
+                                <p>Rynek 36<br>56-400 Oleśnica</p>
+                            </div>
+                        </div>
